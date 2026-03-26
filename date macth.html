@@ -2,166 +2,207 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lịch Thi Đấu Vòng 16 Đội</title>
+    <title>Sơ đồ 12 Đội - CTECH 13h30 Start</title>
     <style>
         :root {
-            --primary-color: #5d3fd3; /* Màu tím chủ đạo của CTECH */
-            --accent-color: #ff4757;  /* Màu đỏ cho chữ VS */
-            --bg-color: #f4f7f6;
-            --text-color: #2f3542;
+            --bg-body: #0a0d1d;
+            --bg-card: rgba(20, 26, 46, 0.9);
+            --border-glow: #28335a;
+            --accent-cyan: #00d2ff;
+            --accent-gold: #ffd700;
+            --vs-red: #ff4757;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-body);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
             display: flex;
-            justify-content: center;
-            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
             margin: 0;
         }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { text-transform: uppercase; letter-spacing: 5px; margin: 0; font-size: 2.2em; }
+        .header p { color: var(--accent-cyan); font-weight: bold; margin-top: 10px; }
+
+        .bracket-container {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            margin-bottom: 50px;
         }
 
-        h2 {
+        .round { display: flex; flex-direction: column; width: 250px; }
+        .round-header {
             text-align: center;
-            color: var(--primary-color);
+            font-size: 0.8em;
+            color: var(--accent-cyan);
+            padding: 10px;
+            border-bottom: 2px solid var(--border-glow);
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 10px;
+            letter-spacing: 2px;
         }
 
         .match-card {
-            display: grid;
-            grid-template-columns: 1fr 50px 1fr;
-            align-items: center;
-            background: #fff;
-            margin-bottom: 15px;
-            padding: 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-glow);
             border-radius: 10px;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
+            padding: 15px;
+            margin-bottom: 20px;
+            transition: 0.3s ease;
         }
 
-        .match-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(93, 63, 211, 0.2);
-            border-color: var(--primary-color);
-        }
+        .match-card:hover { border-color: var(--accent-cyan); transform: scale(1.02); }
 
-        .team {
+        .time-tag {
+            font-size: 0.75em;
+            color: var(--accent-cyan);
+            margin-bottom: 10px;
             font-weight: bold;
-            font-size: 1.1em;
-            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .team-a { text-align: right; padding-right: 15px; }
-        .team-b { text-align: left; padding-left: 15px; }
+        .team-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.9em;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
 
-        .vs-badge {
-            background: var(--accent-color);
-            color: white;
-            font-size: 0.8em;
-            font-weight: 900;
-            padding: 5px;
-            border-radius: 5px;
+        .team-line:last-child { border-bottom: none; }
+        .score-box { color: var(--accent-cyan); font-weight: bold; }
+
+        /* VÒNG TRÒN TÍNH ĐIỂM */
+        .final-robin {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(108, 92, 231, 0.1);
+            border: 2px solid var(--accent-gold);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .final-title {
             text-align: center;
-            box-shadow: 0 2px 5px rgba(255, 71, 87, 0.4);
+            color: var(--accent-gold);
+            font-size: 1.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
         }
 
-        .match-info {
-            grid-column: span 3;
-            text-align: center;
-            font-size: 0.85em;
-            color: #747d8c;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
+        table { width: 100%; border-collapse: collapse; text-align: center; }
+        th { padding: 15px; border-bottom: 2px solid var(--accent-gold); color: var(--accent-cyan); font-size: 0.8em; }
+        td { padding: 15px; border-bottom: 1px solid var(--border-glow); }
 
-        @media (max-width: 480px) {
-            .team { font-size: 0.9em; }
-            .container { padding: 10px; }
-        }
+        .highlight { color: var(--accent-gold); font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>🏆 Vòng 16 Đội - Tứ Phương Đại Chiến 🏆</h2>
+<div class="header">
+    <h1>Tứ Phương Đại Chiến</h1>
+    <p>LỊCH THI ĐẤU CHIỀU - START: 13H30</p>
+</div>
 
-    <!-- Trận 1 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 1</div>
-        <div class="team team-a">CNTT602</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">Art Attack</div>
+<div class="bracket-container">
+    <!-- VÒNG 1 (13:30 - 16:30) -->
+    <div class="round">
+        <div class="round-header">Vòng 1/8 (BO1)</div>
+        
+        <div class="match-card">
+            <div class="time-tag">🕒 13:30 - 14:00</div>
+            <div class="team-line">VUA CTECH <span class="score-box">-</span></div>
+            <div class="team-line">Aaaaaaaa <span class="score-box">-</span></div>
+        </div>
+
+        <div class="match-card">
+            <div class="time-tag">🕒 13:30 - 14:00</div>
+            <div class="team-line">CNTT602 <span class="score-box">-</span></div>
+            <div class="team-line">VVS <span class="score-box">-</span></div>
+        </div>
+
+        <div class="match-card">
+            <div class="time-tag">🕒 13:30 - 14:00</div>
+            <div class="team-line">CHAMPION <span class="score-box">-</span></div>
+            <div class="team-line">Bánh ngọt <span class="score-box">-</span></div>
+        </div>
+
+        <div class="match-card">
+            <div class="time-tag">🕒13:30 - 14:00</div>
+            <div class="team-line">ba sếu <span class="score-box">-</span></div>
+            <div class="team-line">GOAT <span class="score-box">-</span></div>
+        </div>
+
+        <div class="match-card">
+            <div class="time-tag">🕒 13:30 - 14:00</div>
+            <div class="team-line">Suýt Thì Đẹp Trai <span class="score-box">-</span></div>
+            <div class="team-line">Thất Đại Tội <span class="score-box">-</span></div>
+        </div>
+
+        <div class="match-card">
+            <div class="time-tag">🕒 13:30 - 14:00</div>
+            <div class="team-line">Oto 604 Esports<span class="score-box">-</span></div>
+            <div class="team-line">OT 607 k15 <span class="score-box">-</span></div>
+        </div>
     </div>
 
-    <!-- Trận 2 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 2</div>
-        <div class="team team-a">VUA CTECH</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">Bánh ngọt</div>
-    </div>
+    <!-- TỨ KẾT (16:30 - 18:00) -->
+    <div class="round">
+        <div class="round-header">Tứ Kết</div>
+        
+        <div class="match-card" style="margin-top: 50px;">
+            <div class="time-tag">🕒 14:00 - 14:30</div>
+            <div class="team-line">Thắng Trận 1</div>
+            <div class="team-line">Thắng Trận 2</div>
+        </div>
 
-    <!-- Trận 3 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 3</div>
-        <div class="team team-a">Dreams Esports</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">Suýt Thì Đẹp Trai</div>
-    </div>
+        <div class="match-card" style="margin-top: 100px;">
+            <div class="time-tag">🕒 14:00 - 14:30</div>
+            <div class="team-line">Thắng Trận 3</div>
+            <div class="team-line">Thắng Trận 4</div>
+        </div>
 
-    <!-- Trận 4 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 4</div>
-        <div class="team team-a">OT 607 k15</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">Đội 16</div>
+        <div class="match-card" style="margin-top: 100px;">
+            <div class="time-tag">🕒 14:00 - 14:30</div>
+            <div class="team-line">Thắng Trận 5</div>
+            <div class="team-line">Thắng Trận 6</div>
+        </div>
     </div>
+</div>
 
-    <!-- Trận 5 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 5</div>
-        <div class="team team-a">12A4</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">Misi người tày</div>
+<!-- VÒNG TRÒN TÍNH ĐIỂM (18:00 - HẾT) -->
+<div class="final-robin">
+    <div class="final-title">🏆 Chung Kết Tam Mã (Vòng Tròn)</div>
+    <div style="text-align: center; font-size: 0.8em; margin-bottom: 20px; color: #888;">
+        Dự kiến: 15:00 - 17h00<br>
     </div>
-
-    <!-- Trận 6 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 6</div>
-        <div class="team team-a">GOAT</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">Aaaaaaaa</div>
-    </div>
-
-    <!-- Trận 7 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 7</div>
-        <div class="team team-a">Thất Đại Tội</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">VVS</div>
-    </div>
-
-    <!-- Trận 8 -->
-    <div class="match-card">
-        <div class="match-info">TRẬN 8</div>
-        <div class="team team-a">CHAMPION</div>
-        <div class="vs-badge">VS</div>
-        <div class="team team-b">ba sếu</div>
-    </div>
-
+    <table>
+        <thead>
+            <tr>
+                <th>Hạng</th>
+                <th>Tên Đội</th>
+                <th>Trận</th>
+                <th>Thắng</th>
+                <th>Hòa</th>
+                <th>Thua</th>
+                <th>Điểm</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td class="highlight">Đội Thắng TK 1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>2</td><td class="highlight">Đội Thắng TK 2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>3</td><td class="highlight">Đội Thắng TK 3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
